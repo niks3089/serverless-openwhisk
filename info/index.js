@@ -8,7 +8,7 @@ class OpenWhiskInfo {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options || {};
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
 
     this.hooks = {
       'info:info': () => BbPromise.bind(this)
@@ -128,7 +128,7 @@ class OpenWhiskInfo {
       routes.apis.forEach(api => this.logApiEndPoints(api.value))
       this.consoleLog('')
     })
-      
+
     operation = operation.catch(err => {
       this.consoleLog(`${chalk.red('**failed to fetch routes**')}`)
       if(err.message.match(/status code 400/) && err.message.match(/expired/)) {

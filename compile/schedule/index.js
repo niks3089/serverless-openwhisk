@@ -6,7 +6,7 @@ class OpenWhiskCompileSchedules {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options;
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
     this.feed = '/whisk.system/alarms/alarm'
 
     this.hooks = {
@@ -35,7 +35,7 @@ class OpenWhiskCompileSchedules {
     const cron = rate.match(/cron\((.*)\)/)
     if (!cron || !cron[1] || cron[1].split(' ').length !== 5) {
       throw new this.serverless.classes.Error(
-        [`Schedule event rate property value is invalid: ${rate}`, 
+        [`Schedule event rate property value is invalid: ${rate}`,
          'The correct syntax should be "cron(_ _ _ _ _)"'].join('\n')
       )
     }

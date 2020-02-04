@@ -1,5 +1,5 @@
 'use strict';
 
-require('./openwhiskProvider');
+require('./nimbellaProvider');
 require('./credentials');
 require('./cliTokenManager');

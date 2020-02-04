@@ -1,7 +1,7 @@
 {
-  "name": "serverless-openwhisk",
+  "name": "serverless-nimbella",
   "version": "0.18.4",
-  "description": "OpenWhisk support for the Serverless Framework",
+  "description": "Nimbella platform for the Serverless Framework",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -12,17 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/serverless/serverless-openwhisk.git"
+    "url": "git+https://github.com/niks3089/serverless-openwhisk.git"
   },
   "keywords": [
     "serverless",
     "framework",
-    "openwhisk"
+    "openwhisk",
+    "nimbella"
   ],
-  "author": "James Thomas <james@jamesthom.as>",
+  "author": "Nikhil Acharya <nikhil@nimbella.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/serverless/serverless-openwhisk/issues"
+    "url": "https://github.com/niks3089/serverless-openwhisk/issues"
   },
   "engines": {
     "node": ">=6.0"
@@ -38,6 +39,7 @@
     "jws": "^3.2.2",
     "lodash": "^4.17.11",
     "moment": "^2.16.0",
+    "nim": "https://apigcp.nimbella.io/downloads/nim/nimbella-cli.tgz",
     "openwhisk": "^3.19.0"
   },
   "devDependencies": {

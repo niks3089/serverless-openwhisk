@@ -1,7 +1,7 @@
 'use strict';
 
 // This class ensures that all the required authentication credentials
-// are available, either from the user's .wskprops file or environment
+// are available, either from the user's .nimbella/wskprops file or environment
 // parameters.
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
             const envName = `OW_${key.toUpperCase()}`;
             throw new this.serverless.classes.Error(
               `OpenWhisk required configuration parameter ${envName} missing or blank. ` +
-              'Must be present in .wskprops as environment variable.'
+              'Must be present in .nimbella/wskprops as environment variable.'
             );
           }
         });

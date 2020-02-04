@@ -6,7 +6,7 @@ class OpenWhiskCompileRules {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options;
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
 
     this.hooks = {
       'before:package:compileEvents': this.setup.bind(this),
@@ -70,12 +70,12 @@ class OpenWhiskCompileRules {
     if (typeof trigger === 'string') {
       return { ruleName: defaultRuleName, overwrite: true, trigger: this.calculateTriggerName(trigger), action, namespace };
     }
-    
+
     if (!trigger.hasOwnProperty('rule')) {
       throw new this.serverless.classes.Error(
         `Missing mandatory rule property from Event Trigger definition for Function: ${funcName}`);
     }
-    
+
     if (!trigger.hasOwnProperty('name')) {
       throw new this.serverless.classes.Error(
         `Missing mandatory name property from Event Trigger definition for Function: ${funcName}`);

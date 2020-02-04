@@ -8,7 +8,7 @@ class OpenWhiskCompileMessageHub {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options;
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
     this.default_package = '/whisk.system/messaging'
 
     this.hooks = {
@@ -55,7 +55,7 @@ class OpenWhiskCompileMessageHub {
     const name = config.trigger || this.defaultMessageHubName(fnName, config.topic)
     const feed = `${config.package || this.default_package}/messageHubFeed`
 
-    const feed_parameters = { 
+    const feed_parameters = {
       topic: config.topic,
       isJSONData: config.json || false,
       isBinaryKey: config.binary_key || false,

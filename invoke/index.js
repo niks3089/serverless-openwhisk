@@ -15,7 +15,7 @@ class OpenWhiskInvoke {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options || {};
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
 
     this.hooks = {
       'invoke:invoke': () => BbPromise.bind(this)
@@ -61,7 +61,7 @@ class OpenWhiskInvoke {
       try {
         this.options.data = JSON.parse(this.options.data);
         if (this.options.data == null || typeof this.options.data !== 'object') throw new this.serverless.classes.Error('Data parameter must be a JSON object')
-        
+
           } catch (exception) {
         throw new this.serverless.classes.Error(
           `Error parsing data parameter as JSON: ${exception}`

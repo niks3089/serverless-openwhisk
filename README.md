@@ -17,7 +17,7 @@ Before you can deploy your service to Apache OpenWhisk, you need to have an acco
 
 Account credentials for OpenWhisk can be provided through a configuration file or environment variables. This plugin requires the API endpoint, namespace and authentication credentials.
 
-**Do you want to use a configuration file for storing these values?** Please [follow the instructions](https://console.ng.bluemix.net/openwhisk/cli) for setting up the OpenWhisk command-line utility. This tool stores account credentials in the `.wskprops` file in the user's home directory. The plugin automatically extracts credentials from this file at runtime.  No further configuration is needed.
+**Do you want to use a configuration file for storing these values?** Please [follow the instructions](https://console.ng.bluemix.net/openwhisk/cli) for setting up the OpenWhisk command-line utility. This tool stores account credentials in the `.nimbella/wskprops` file in the user's home directory. The plugin automatically extracts credentials from this file at runtime.  No further configuration is needed.
 
 **Do you want to use environment variables for credentials?** Use the following environment variables to be pass in account credentials. These values override anything extracted from the configuration file.
 
@@ -692,7 +692,7 @@ This feature is also available through the `serverless.yaml` file using the `bin
 ```yaml
 functions:
   my_function:
-    handler: file_name.handler    
+    handler: file_name.handler
     bind:
       - service:
           name: cloud-object-storage
@@ -879,11 +879,11 @@ resources:
             secret: API-Key-Secret-Header
 ```
 
-*See the API Gateway [configuration panel](https://cloud.ibm.com/openwhisk/apimanagement) to manage API keys and secrets after authentication is enabled.* 
+*See the API Gateway [configuration panel](https://cloud.ibm.com/openwhisk/apimanagement) to manage API keys and secrets after authentication is enabled.*
 
 ### Application Authentication with OAuth
 
-API endpoints can also be protected by an external OAuth providers. 
+API endpoints can also be protected by an external OAuth providers.
 
 OAuth tokens must be included as the Authorization header of each API request. Token will be validated with the specified token provider. If the token is invalid, requests are rejected with response code 401.
 
@@ -1240,7 +1240,7 @@ resources:
   triggers:
     my_trigger:
       parameters:
-        hello: world            
+        hello: world
 ```
 
 ### Trigger Feeds
@@ -1262,7 +1262,7 @@ resources:
 
 ## Commands
 
-The following serverless commands are currently implemented for the OpenWhisk provider.
+The following serverless commands are currently implemented for the Nimbella provider.
 
 - `deploy` - [Deploy functions, triggers and rules for service](https://serverless.com/framework/docs/providers/openwhisk/cli-reference/deploy/).
 - `invoke`- [Invoke deployed serverless function and show result](https://serverless.com/framework/docs/providers/openwhisk/cli-reference/invoke/).

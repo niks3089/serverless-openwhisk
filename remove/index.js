@@ -15,7 +15,7 @@ class OpenWhiskRemove {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options || {};
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
 
     Object.assign(this, validate, setupResources, removePackages, removeFunctions,
       removeTriggers, removeRules, removeFeeds, removeRoutes, util);

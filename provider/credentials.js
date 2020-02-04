@@ -7,7 +7,7 @@ const ENV_PARAMS = ['OW_APIHOST', 'OW_AUTH', 'OW_NAMESPACE', 'OW_APIGW_ACCESS_TO
 
 function getWskPropsFile() {
   const Home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
-  return process.env.WSK_CONFIG_FILE || path.format({ dir: Home, base: '.wskprops' });
+  return process.env.WSK_CONFIG_FILE || path.format({ dir: Home, base: '.nimbella/wskprops' });
 }
 
 function readWskPropsFile() {

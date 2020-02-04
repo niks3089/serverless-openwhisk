@@ -9,7 +9,7 @@ class OpenWhiskLogs {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options || {};
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
     this.previous_activations = new Set()
 
     this.hooks = {
@@ -91,7 +91,7 @@ class OpenWhiskLogs {
     const functionObject = this.serverless.service.getFunction(this.options.function);
     const actionName = functionObject.name || `${this.serverless.service.service}_${this.options.function}`
 
-    // skip activations for other actions or that we have seen before 
+    // skip activations for other actions or that we have seen before
     const filtered = logs.filter(log => this.hasPathAnnotationWithName((log.annotations || []), actionName)
       && !this.previous_activations.has(log.activationId))
 
@@ -101,7 +101,7 @@ class OpenWhiskLogs {
         log.logs = log.logs.filter(logLine => logLine.match(this.options.filter))
       })
     }
-    
+
     // filter those logs based upon start time
     if (this.options.startTime) {
       filtered.forEach(log => {
@@ -111,7 +111,7 @@ class OpenWhiskLogs {
         })
       })
     }
-      
+
     return BbPromise.resolve(filtered);
   }
 

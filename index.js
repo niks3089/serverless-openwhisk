@@ -22,7 +22,7 @@ const Remove = require('./remove/index.js');
 const Logs = require('./logs/index.js');
 const Info = require('./info/index.js');
 const DeployFunction = require('./deployFunction/index.js');
-const OpenwhiskProvider = require('./provider/openwhiskProvider.js');
+const nimbellaProvider = require('./provider/nimbellaProvider.js');
 const ConfigCredentials = require('./configCredentials/index.js')
 
 class Index {
@@ -30,7 +30,7 @@ class Index {
     this.serverless = serverless;
     this.options = options;
 
-    this.serverless.pluginManager.addPlugin(OpenwhiskProvider);
+    this.serverless.pluginManager.addPlugin(nimbellaProvider);
     this.serverless.pluginManager.addPlugin(CompilePackages);
     this.serverless.pluginManager.addPlugin(CompileFunctions);
     this.serverless.pluginManager.addPlugin(CompileHttpEvents);

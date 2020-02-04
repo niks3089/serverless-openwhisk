@@ -9,7 +9,7 @@ const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
 const OpenWhiskConfigCredentials = require('../index');
-const OpenWhiskProvider = require('../../provider/openwhiskProvider');
+const nimbellaProvider = require('../../provider/nimbellaProvider');
 
 const getTmpDirPath = () => path.join(os.tmpdir(),
   'tmpdirs-serverless', 'serverless', crypto.randomBytes(8).toString('hex'));
@@ -23,7 +23,7 @@ describe('OpenWhiskConfigCredentials', () => {
     cli: { log: () => {} },
     utils: {}
   };
- 
+
   beforeEach(() => {
     const options = {
       provider: 'openwhisk',
@@ -87,7 +87,7 @@ describe('OpenWhiskConfigCredentials', () => {
       fse.mkdirsSync(tmpDirPath);
 
       // create the .openwhisk/credetials directory and file
-      credentialsFilePath = path.join(tmpDirPath, '.wskprops');
+      credentialsFilePath = path.join(tmpDirPath, '.nimbella/wskprops');
       fse.ensureFileSync(credentialsFilePath);
 
       // save the homeDir so that we can reset this later on
@@ -125,7 +125,7 @@ describe('OpenWhiskConfigCredentials', () => {
       const lines = []
       serverless.cli.log = log => lines.push(log)
       return openwhiskConfigCredentials.configureCredentials().then(() => {
-        expect(lines[2]).to.equal('Failed! ~/.wskprops exists and already has credentials.');
+        expect(lines[2]).to.equal('Failed! ~/.nimbella/wskprops exists and already has credentials.');
       });
     });
 
@@ -133,7 +133,7 @@ describe('OpenWhiskConfigCredentials', () => {
       openwhiskConfigCredentials.options.apihost = 'my-apihost';
       openwhiskConfigCredentials.options.auth = 'my-auth';
 
-      let args 
+      let args
       serverless.utils.fileExistsSync = () => true;
       serverless.utils.readFileSync = () => "";
       serverless.utils.writeFile = (path, content) => args = {path, content};

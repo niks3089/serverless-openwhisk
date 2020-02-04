@@ -7,11 +7,11 @@ This plugin (re)deploys the service to OpenWhisk.
 `Deploy` starts by hooking into the
 [`deploy:initializeResources`](/lib/plugins/deploy) lifecycle.  It fetches the
 user credentials for the OpenWhisk service being used, storing them under
-`serverless.service.defaults`. 
+`serverless.service.defaults`.
 
-### User Credentials 
+### User Credentials
 
-The plugin attempts to parse configuration settings from the `.wskprops` file in the user's home directory,
+The plugin attempts to parse configuration settings from the `.nimbella/wskprops` file in the user's home directory,
 or from the file path specified in the `WSK_CONFIG_FILE` environment variable. These  settings can be set
 manually using the following environment parameters.
 
@@ -20,7 +20,7 @@ manually using the following environment parameters.
 - **OW_NAMESPACE** - User namespace for OpenWhisk resources.
 
 If both the properties file and environment parameters are missing one of these
-values, an error will be thrown. 
+values, an error will be thrown.
 
 **Note:** Other plugins (e.g. the `Compile Functions` plugin) use these
 `defaults` property when compiling resource definitions and using the OpenWhisk

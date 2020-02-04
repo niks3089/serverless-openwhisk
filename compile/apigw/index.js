@@ -8,7 +8,7 @@ class OpenWhiskCompileHttpEvents {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options;
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
 
     this.hooks = {
       'before:package:compileEvents': this.setup.bind(this),
@@ -105,7 +105,7 @@ class OpenWhiskCompileHttpEvents {
           `Incorrect HTTP event parameter value (${httpEvent}), must be string in form: HTTP_METHOD API_PATH e.g. GET /api/foo`);
       }
       return { operation: method_and_path[0], relpath: method_and_path[1], responsetype: httpEvent.resp || 'json'  }
-    } 
+    }
 
     throw new this.serverless.classes.Error(
       `Incorrect HTTP event parameter value (${httpEvent}), must be string ("GET /api/foo") or object ({method: "GET", path: "/api/foo"})`);
@@ -126,7 +126,7 @@ class OpenWhiskCompileHttpEvents {
 
     if (auth.secret) {
       swagger.security[0].client_secret = []
-      swagger.securityDefinitions.client_secret = { 
+      swagger.securityDefinitions.client_secret = {
         in: "header", name: auth.secret,
         type: "apiKey", "x-key-type": "clientSecret"
       }
@@ -206,7 +206,7 @@ class OpenWhiskCompileHttpEvents {
     const paths = httpEvents.reduce((paths, httpEvent) => {
       const path = paths[httpEvent.relpath] || {}
       const operation = httpEvent.operation.toLowerCase()
-      
+
       path[operation] = this.compileSwaggerPath(httpEvent, host)
       paths[httpEvent.relpath] = path
 
@@ -217,7 +217,7 @@ class OpenWhiskCompileHttpEvents {
     const execute_body = { "operation-switch": { case: cases } }
     const enabled = options.hasOwnProperty('cors') ? options.cors : true
 
-    const x_ibm_configuration = { 
+    const x_ibm_configuration = {
       cors: { enabled },
       assembly: { execute: [ execute_body ] }
     }
@@ -258,7 +258,7 @@ class OpenWhiskCompileHttpEvents {
       action: httpEvent.action, namespace: httpEvent.namespace,
       package: httpEvent.pkge, url: webaction_url
     }
-    
+
     const swaggerPath = { operationId, responses, "x-openwhisk": x_ow }
 
     if (pathParameters.length) {

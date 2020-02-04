@@ -11,7 +11,7 @@ class OpenWhiskInvokeLocal {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options || {};
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
 
     this.hooks = {
       'invoke:local:invoke': () => BbPromise.bind(this)

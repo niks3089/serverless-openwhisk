@@ -7,7 +7,7 @@ class OpenWhiskCompileFunctions {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options;
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
     this.runtimes = new Runtimes(serverless)
 
     this.hooks = {
@@ -112,8 +112,8 @@ class OpenWhiskCompileFunctions {
       // optional action parameters
       const Parameters = Object.keys(functionObject.parameters || {})
         .map(key => ({ key, value: functionObject.parameters[key] }));
-      
-      // optional action annotations 
+
+      // optional action annotations
       const Annotations = this.constructAnnotations(functionObject.annotations);
 
       return this.compileFunctionAction(

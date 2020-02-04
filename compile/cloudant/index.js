@@ -6,7 +6,7 @@ class OpenWhiskCompileCloudant {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options;
-    this.provider = this.serverless.getProvider('openwhisk');
+    this.provider = this.serverless.getProvider('nimbella');
     this.default_package = '/whisk.system/cloudant'
 
     this.hooks = {
@@ -68,7 +68,7 @@ class OpenWhiskCompileCloudant {
     const name = config.trigger || this.defaultCloudantName(fnName, config.db)
     const feed = `${config.package || this.default_package}/changes`
 
-    const feed_parameters = { 
+    const feed_parameters = {
       dbname: config.db
     }
 

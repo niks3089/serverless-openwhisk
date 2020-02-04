@@ -12,7 +12,7 @@ const constants = {
 
 const credentials = ['apihost', 'auth'];
 
-class OpenwhiskProvider {
+class NimbellaProvider {
   static getProviderName() {
     return constants.providerName;
   }
@@ -60,17 +60,17 @@ class OpenwhiskProvider {
     credentials.forEach(prop => {
       if (!creds[prop]) {
         throw new Error(`Missing mandatory openwhisk configuration property: OW_${prop.toUpperCase()}.` +
-          ' Check .wskprops file or set environment variable?');
+          ' Check .nimbella/wskprops file or set environment variable?');
       }
     });
     return creds;
   }
 
-  // Auto-detect whether ~/.wskprops uses IBM Cloud IAM namespace (and therefore requires IAM auth handler).
+  // Auto-detect whether ~/.nimbella/wskprops uses IBM Cloud IAM namespace (and therefore requires IAM auth handler).
   // Namespace will be IAM NS ID rather than default namespace. Api host will end with ibm.com hostname.
   isIBMCloudIAMProps (props) {
     return props.namespace !== '_' && props.apihost.endsWith('cloud.ibm.com')
   }
 }
 
-module.exports = OpenwhiskProvider;
+module.exports = NimbellaProvider;

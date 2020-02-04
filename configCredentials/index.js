@@ -58,7 +58,7 @@ class OpenWhiskConfigCredentials {
     }
 
     this.serverless.cli.log('Setting up Apache OpenWhisk...');
-    this.serverless.cli.log('Saving your credentials in "~/.wskprops"...');
+    this.serverless.cli.log('Saving your credentials in "~/.nimbella/wskprops"...');
 
     // locate home directory on user's machine
     const env = process.env;
@@ -71,8 +71,8 @@ class OpenWhiskConfigCredentials {
         .Error('Can\'t find home directory on your local file system.');
     }
 
-    // check if ~/.wskprops exists
-    const credsPath = path.join(home, '.wskprops');
+    // check if ~/.nimbella/wskprops exists
+    const credsPath = path.join(home, '.nimbella/wskprops');
 
     if (this.serverless.utils.fileExistsSync(credsPath)) {
       // check if credentials files contains anything
@@ -81,7 +81,7 @@ class OpenWhiskConfigCredentials {
       // if credentials file exists w/ auth, exit
       if (credsFile.length && credsFile.indexOf(`AUTH`) > -1) {
         this.serverless.cli.log(
-          `Failed! ~/.wskprops exists and already has credentials.`);
+          `Failed! ~/.nimbella/wskprops exists and already has credentials.`);
         return BbPromise.resolve();
       }
     }
@@ -90,10 +90,10 @@ class OpenWhiskConfigCredentials {
     this.serverless.utils.writeFile(
       credsPath,
       `APIHOST=${this.options.apihost}
-AUTH=${this.options.auth}`); 
+AUTH=${this.options.auth}`);
 
     this.serverless.cli.log(
-      'Success! Your Apache OpenWhisk credentials were stored in the configuration file (~/.wskprops).'
+      'Success! Your Nimbella credentials were stored in the configuration file (~/.nimbella/wskprops).'
     );
 
     return BbPromise.resolve();

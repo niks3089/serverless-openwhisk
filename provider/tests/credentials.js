@@ -38,7 +38,7 @@ describe('#getWskProps()', () => {
 
       sandbox.stub(fs, 'readFile', (path, encoding, cb) => {
         expect(path.match(home).length).to.equal(1);
-        expect(path.match('.wskprops').length).to.equal(1);
+        expect(path.match('.nimbella/wskprops').length).to.equal(1);
         cb(null, wskProps);
       });
 

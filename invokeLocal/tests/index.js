@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const sinon = require('sinon');
 const path = require('path');
 const OpenWhiskInvokeLocal = require('../index');
-const OpenWhiskProvider = require('../../provider/openwhiskProvider');
+const nimbellaProvider = require('../../provider/nimbellaProvider');
 const BbPromise = require('bluebird');
 const os = require('os');
 const crypto = require('crypto');
@@ -30,7 +30,7 @@ describe('OpenWhiskInvokeLocal', () => {
     }
   };
   serverless.setProvider = () => {}
-  const provider = new OpenWhiskProvider(serverless)
+  const provider = new nimbellaProvider(serverless)
   serverless.getProvider = () => provider;
 
   const options = {
@@ -43,8 +43,8 @@ describe('OpenWhiskInvokeLocal', () => {
   describe('#constructor()', () => {
     it('should have hooks', () => expect(openwhiskInvokeLocal.hooks).to.be.not.empty);
 
-    it('should set the provider variable to an instance of OpenWhiskProvider', () =>
-      expect(openwhiskInvokeLocal.provider).to.be.instanceof(OpenWhiskProvider));
+    it('should set the provider variable to an instance of nimbellaProvider', () =>
+      expect(openwhiskInvokeLocal.provider).to.be.instanceof(nimbellaProvider));
 
     it('should run promise chain in order', () => {
       const validateStub = sinon
@@ -274,7 +274,7 @@ describe('OpenWhiskInvokeLocal', () => {
       })
     );
 
-    it('it should merge implicit packages with parameters', () => { 
+    it('it should merge implicit packages with parameters', () => {
       serverless.service.resources.packages = {
         mypackage: { parameters: { hello: 'world', foo: 'baz' } }
       }
